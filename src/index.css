@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+  :root {
+    --background: 210 40% 98%; /* Slate 50 - Clean white-gray */
+    --foreground: 222.2 84% 4.9%; /* Slate 900 - Deep navy */
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 222.2 84% 4.9%; /* Slate 900 */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 84% 4.9%; /* Slate 900 - Deep navy for headers */
+    --primary-foreground: 210 40% 98%; /* Light text on dark primary */
+    --secondary: 215.4 16.3% 46.9%; /* Slate 500 - Medium gray */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 40% 96.1%; /* Light muted background */
+    --muted-foreground: 215.4 16.3% 46.9%; /* Slate 500 for muted text */
+    --accent: 217.2 91.2% 59.8%; /* Blue 500 - Professional blue */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%; /* Keep red for destructive actions */
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 91%; /* Light border */
+    --input: 220 13% 91%; /* Light input background */
+    --ring: 217.2 91.2% 59.8%; /* Blue 500 for focus rings */
+    --chart-1: 158.1 64.4% 51.6%; /* Emerald 500 - Success green */
+    --chart-2: 217.2 91.2% 59.8%; /* Blue 500 */
+    --chart-3: 215.4 16.3% 46.9%; /* Slate 500 */
+    --chart-4: 222.2 84% 4.9%; /* Slate 900 */
+    --chart-5: 45.4 93.4% 47.5%; /* Amber accent */
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 222.2 84% 4.9%; /* Slate 900 - Dark background */
+    --foreground: 210 40% 98%; /* Slate 100 - Light text */
+    --card: 215.3 25% 26.7%; /* Slate 800 - Dark cards */
+    --card-foreground: 210 40% 98%; /* Light text on dark cards */
+    --popover: 215.3 25% 26.7%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%; /* Light primary in dark mode */
+    --primary-foreground: 222.2 84% 4.9%; /* Dark text on light primary */
+    --secondary: 215.3 19.3% 34.5%; /* Slate 700 */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 215.3 19.3% 34.5%; /* Slate 700 for muted areas */
+    --muted-foreground: 217.9 10.6% 64.9%; /* Slate 400 for muted text */
+    --accent: 217.2 91.2% 59.8%; /* Blue 500 - Same accent color */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%; /* Darker red for dark mode */
+    --destructive-foreground: 210 40% 98%;
+    --border: 215.3 19.3% 34.5%; /* Slate 700 for borders */
+    --input: 215.3 19.3% 34.5%; /* Slate 700 for inputs */
+    --ring: 217.2 91.2% 59.8%; /* Blue 500 for focus rings */
+    --chart-1: 158.1 64.4% 51.6%; /* Emerald 500 - Success green */
+    --chart-2: 217.2 91.2% 59.8%; /* Blue 500 */
+    --chart-3: 217.9 10.6% 64.9%; /* Slate 400 */
+    --chart-4: 210 40% 98%; /* Slate 100 */
+    --chart-5: 45.4 93.4% 47.5%; /* Amber accent */
+  }
+}
+
+@layer components {
+  .editor-textarea {
+    @apply w-full h-full p-4 font-mono text-sm bg-background text-foreground border-0 outline-none resize-none;
+    line-height: 1.5;
+  }
+  
+  .markdown-preview {
+    @apply max-w-none;
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
