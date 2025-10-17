@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
+
 
 // Add custom CSS for markdown styling
 const markdownStyles = `
@@ -41,7 +41,7 @@ const AIChat: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const { state, dispatch } = useNotepad();
+  const { dispatch } = useNotepad();
   
   const CHAT_HISTORY_KEY = 'ai_chat_history';
 
@@ -172,7 +172,7 @@ const AIChat: React.FC = () => {
       const titleMatch = userInput.match(/(?:create|new|add)\s+document\s+(?:titled|called|named)?\s*["']?([^"'\n]+)["']?/i);
       if (titleMatch) {
         const title = titleMatch[1].trim();
-        const doc = await createDocument(title);
+        await createDocument(title);
         return `✅ I've created a new document titled "${title}" for you! You can find it in your documents list.`;
       }
     }
@@ -236,7 +236,7 @@ const AIChat: React.FC = () => {
 
     setMessages(prev => [...prev, userMessage]);
     const currentInput = inputValue;
-    const currentImages = [...selectedImages];
+    // const currentImages = [...selectedImages];
     setInputValue('');
     setSelectedImages([]);
     setIsLoading(true);

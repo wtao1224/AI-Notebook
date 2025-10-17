@@ -71,7 +71,7 @@ const AIProjectTemplateGenerator: React.FC<AIProjectTemplateGeneratorProps> = ({
       };
 
       const template = await aiProjectService.generateProjectTemplate(projectType, userContext);
-      setGeneratedTemplate(template);
+      setGeneratedTemplate(template as ProjectTemplate);
       
       // Select all tasks by default
       setSelectedTasks(new Set(template.suggestedTasks?.map((_, index) => index) || []));

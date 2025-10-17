@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Goal, Task, Project } from '../types';
 
 interface GoalManagerProps {
@@ -23,8 +23,8 @@ const GoalManager: React.FC<GoalManagerProps> = ({
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    type: 'tasks' as Goal['type'],
-    unit: 'tasks' as Goal['unit'],
+    type: 'daily' as Goal['type'],
+    unit: 'tasks',
     target: 1,
     current: 0,
     deadline: '',
@@ -36,7 +36,7 @@ const GoalManager: React.FC<GoalManagerProps> = ({
     setFormData({
       title: '',
       description: '',
-      type: 'tasks',
+      type: 'daily',
       unit: 'tasks',
       target: 1,
       current: 0,
@@ -53,7 +53,7 @@ const GoalManager: React.FC<GoalManagerProps> = ({
 
     const goalData = {
       ...formData,
-      deadline: formData.deadline ? new Date(formData.deadline).toISOString() : undefined,
+      deadline: formData.deadline ? new Date(formData.deadline) : undefined,
       projectId: formData.projectId || undefined
     };
 
@@ -95,22 +95,26 @@ const GoalManager: React.FC<GoalManagerProps> = ({
     
     // Auto-calculate current progress based on goal type
     switch (goal.type) {
-      case 'tasks':
+      case 'daily':
         if (goal.projectId) {
           current = tasks.filter(t => t.projectId === goal.projectId && t.status === 'completed').length;
         } else {
           current = tasks.filter(t => t.status === 'completed').length;
         }
         break;
-      case 'time':
+      case 'weekly':
         // This would need time tracking data
         current = goal.current;
         break;
-      case 'projects':
+      case 'monthly':
         current = projects.filter(p => p.status === 'completed').length;
         break;
-      case 'habit':
+      case 'yearly':
         // This would need habit tracking data
+        current = goal.current;
+        break;
+      case 'custom':
+        // This would need custom tracking data
         current = goal.current;
         break;
       default:
@@ -125,25 +129,31 @@ const GoalManager: React.FC<GoalManagerProps> = ({
 
   const getGoalTypeIcon = (type: Goal['type']) => {
     switch (type) {
-      case 'tasks':
+      case 'daily':
         return (
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
           </svg>
         );
-      case 'time':
+      case 'weekly':
         return (
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         );
-      case 'projects':
+      case 'monthly':
         return (
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
           </svg>
         );
-      case 'habit':
+      case 'yearly':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        );
+      case 'custom':
         return (
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -243,7 +253,7 @@ const GoalManager: React.FC<GoalManagerProps> = ({
                     setFormData({ 
                       ...formData, 
                       type,
-                      unit: type === 'time' ? 'hours' : type === 'projects' ? 'projects' : type === 'habit' ? 'days' : 'tasks'
+                      unit: type === 'weekly' ? 'hours' : type === 'monthly' ? 'projects' : type === 'yearly' ? 'days' : 'tasks'
                     });
                   }}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
