@@ -122,11 +122,11 @@ const ProjectManagement: React.FC = () => {
     setTasks(prev => [...prev, newTask]);
   };
 
-  const handleUpdateTask = (id: string, updates: Partial<Task>) => {
-    setTasks(prev => prev.map(task => 
-      task.id === id 
-        ? { ...task, ...updates, updatedAt: new Date().toISOString() }
-        : task
+  const handleUpdateTask = (task: Task) => {
+    setTasks(prev => prev.map(existingTask => 
+      existingTask.id === task.id 
+        ? { ...task, updatedAt: new Date().toISOString() }
+        : existingTask
     ));
   };
 
@@ -183,10 +183,11 @@ const ProjectManagement: React.FC = () => {
   };
 
   // Category management functions
-  const handleCreateCategory = (category: Omit<Category, 'id'>) => {
+  const handleCreateCategory = (category: Omit<Category, 'id' | 'createdAt'>) => {
     const newCategory: Category = {
       ...category,
-      id: Date.now().toString()
+      id: Date.now().toString(),
+      createdAt: new Date()
     };
     setCategories(prev => [...prev, newCategory]);
   };
@@ -276,7 +277,8 @@ const ProjectManagement: React.FC = () => {
                 <AIProjectTemplateGenerator 
                   onProjectCreate={handleCreateProject}
                   onTaskCreate={handleCreateTask}
-                  categories={categories}
+                  existingProjects={projects}
+                  existingTasks={tasks}
                 />
               </div>
               
@@ -286,9 +288,6 @@ const ProjectManagement: React.FC = () => {
                 timeEntries={timeEntries}
                 goals={goals}
                 categories={categories}
-                onTaskCreate={handleCreateTask}
-                onTaskUpdate={handleUpdateTask}
-                onTaskDelete={handleDeleteTask}
               />
             </div>
           </TabsContent>
@@ -318,10 +317,11 @@ const ProjectManagement: React.FC = () => {
           <TabsContent value="goals" className="m-0">
             <GoalManager
               goals={goals}
+              tasks={tasks}
               projects={projects}
-              onGoalCreate={handleCreateGoal}
-              onGoalUpdate={handleUpdateGoal}
-              onGoalDelete={handleDeleteGoal}
+              onCreateGoal={handleCreateGoal}
+              onUpdateGoal={handleUpdateGoal}
+              onDeleteGoal={handleDeleteGoal}
             />
           </TabsContent>
           <TabsContent value="time" className="m-0">
