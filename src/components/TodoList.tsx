@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Checkbox } from '@/components/ui/checkbox'
+
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -103,7 +103,7 @@ const TodoList: React.FC = () => {
             onKeyPress={(e) => e.key === 'Enter' && addTodo()}
             placeholder="Add task..."
             className="flex-1"
-            size="sm"
+
           />
           <Select value={selectedPriority} onValueChange={(value: 'high' | 'medium' | 'low') => setSelectedPriority(value)}>
             <SelectTrigger className="w-16">

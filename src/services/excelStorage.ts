@@ -1,26 +1,20 @@
 import { StorageProvider, Document, TodoItem } from '../types';
 import * as XLSX from 'xlsx';
 
-export class ExcelStorage implements StorageProvider {
+export class ExcelStorage implements Partial<StorageProvider> {
   private readonly STORAGE_KEY = 'notepad_excel_data';
-  private data: { documents: any[], todos: any[] } | null = null;
+  private data: { documents: any[], todos: any[] } = { documents: [], todos: [] };
 
   private loadData(): { documents: any[], todos: any[] } {
-    if (this.data) return this.data;
-    
     const stored = localStorage.getItem(this.STORAGE_KEY);
     if (stored) {
       this.data = JSON.parse(stored);
-    } else {
-      this.data = { documents: [], todos: [] };
     }
     return this.data;
   }
 
   private saveData(): void {
-    if (this.data) {
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.data));
-    }
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.data));
   }
 
 

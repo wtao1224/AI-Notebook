@@ -1,4 +1,4 @@
-import { Project, Task, Goal, Category } from '../types';
+import { Project, Task, Goal } from '../types';
 
 interface AIProjectSuggestion {
   type: 'project' | 'task' | 'optimization' | 'insight';
@@ -234,7 +234,7 @@ class AIProjectService {
   /**
    * AI-powered task prioritization
    */
-  async prioritizeTasks(tasks: Task[], projects: Project[]): Promise<Task[]> {
+  async prioritizeTasks(tasks: Task[]): Promise<Task[]> {
     if (this.USE_MOCK_AI) {
       return this.getMockPrioritizedTasks(tasks);
     }
@@ -390,7 +390,7 @@ class AIProjectService {
     });
   }
 
-  private getMockProjectSuggestions(projects: Project[], tasks: Task[], goals: Goal[]): AIProjectSuggestion[] {
+  private getMockProjectSuggestions(projects: Project[], tasks: Task[]): AIProjectSuggestion[] {
     const suggestions: AIProjectSuggestion[] = [];
     
     if (projects.length === 0) {
@@ -434,7 +434,7 @@ class AIProjectService {
   private getMockPrioritizedTasks(tasks: Task[]): Task[] {
     return [...tasks].sort((a, b) => {
       // Priority: high > medium > low
-      const priorityWeight = { high: 3, medium: 2, low: 1 };
+      const priorityWeight = { urgent: 4, high: 3, medium: 2, low: 1 };
       const aPriority = priorityWeight[a.priority] || 1;
       const bPriority = priorityWeight[b.priority] || 1;
       
