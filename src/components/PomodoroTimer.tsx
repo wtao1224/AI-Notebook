@@ -24,12 +24,10 @@ const PomodoroTimer: React.FC = () => {
   });
   
   const intervalRef = useRef<number | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Timer constants
   const WORK_TIME = 25 * 60; // 25 minutes in seconds
   const BREAK_TIME = 5 * 60; // 5 minutes in seconds
-  const LONG_BREAK_TIME = 15 * 60; // 15 minutes in seconds
 
   useEffect(() => {
     if (timer.isActive) {

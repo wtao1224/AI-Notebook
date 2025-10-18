@@ -463,7 +463,7 @@ const GoalManager: React.FC<GoalManagerProps> = ({
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Completed Goals</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {completedGoals.map(goal => {
-                const { current, progress } = calculateProgress(goal);
+                const { current } = calculateProgress(goal);
                 
                 return (
                   <div key={goal.id} className="bg-white rounded-lg p-6 shadow-sm border opacity-75">

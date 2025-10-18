@@ -145,13 +145,6 @@ const ProjectManagement: React.FC = () => {
     setProjects(prev => [...prev, newProject]);
   };
 
-  const handleUpdateProject = (id: string, updates: Partial<Project>) => {
-    setProjects(prev => prev.map(project => 
-      project.id === id 
-        ? { ...project, ...updates, updatedAt: new Date() }
-        : project
-    ));
-  };
 
   const handleDeleteProject = (id: string) => {
     setProjects(prev => prev.filter(project => project.id !== id));
