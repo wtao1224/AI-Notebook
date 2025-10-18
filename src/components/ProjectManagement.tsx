@@ -173,7 +173,7 @@ const ProjectManagement: React.FC = () => {
   const handleUpdateGoal = (id: string, updates: Partial<Goal>) => {
     setGoals(prev => prev.map(goal => 
       goal.id === id 
-        ? { ...goal, ...updates, updatedAt: new Date().toISOString() }
+        ? { ...goal, ...updates, updatedAt: new Date() }
         : goal
     ));
   };
@@ -192,15 +192,7 @@ const ProjectManagement: React.FC = () => {
     setCategories(prev => [...prev, newCategory]);
   };
 
-  const handleUpdateCategory = (id: string, updates: Partial<Category>) => {
-    setCategories(prev => prev.map(category => 
-      category.id === id ? { ...category, ...updates } : category
-    ));
-  };
 
-  const handleDeleteCategory = (id: string) => {
-    setCategories(prev => prev.filter(category => category.id !== id));
-  };
 
   // Time tracking functions
   const handleCreateTimeEntry = (entry: Omit<TimeEntry, 'id' | 'createdAt'>) => {
@@ -267,8 +259,6 @@ const ProjectManagement: React.FC = () => {
                   projects={projects}
                   tasks={tasks}
                   goals={goals}
-                  onTaskUpdate={handleUpdateTask}
-                  onProjectUpdate={handleUpdateProject}
                 />
               </div>
               
@@ -297,6 +287,8 @@ const ProjectManagement: React.FC = () => {
               projects={projects}
               categories={categories}
               onTaskUpdate={handleUpdateTask}
+              onTaskCreate={handleCreateTask}
+              onTaskDelete={handleDeleteTask}
             />
           </TabsContent>
           <TabsContent value="projects" className="m-0">
@@ -304,9 +296,7 @@ const ProjectManagement: React.FC = () => {
               projects={projects}
               tasks={tasks}
               categories={categories}
-              goals={goals}
               onProjectCreate={handleCreateProject}
-              onProjectUpdate={handleUpdateProject}
               onProjectDelete={handleDeleteProject}
               onTaskCreate={handleCreateTask}
               onTaskUpdate={handleUpdateTask}

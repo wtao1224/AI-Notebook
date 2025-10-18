@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Project, Task, Category } from '../types';
 import KanbanBoard from './KanbanBoard';
-import { Plus, Users, Target, Clock, AlertCircle, CheckCircle, Circle, MoreHorizontal, Edit, Trash2, Eye } from 'lucide-react';
 import AIProjectTemplateGenerator from './AIProjectTemplateGenerator';
 import { aiProjectService } from '../services/aiProjectService';
 
