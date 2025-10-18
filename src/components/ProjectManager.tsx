@@ -10,11 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Progress } from '@/components/ui/progress';
-import { Calendar, CalendarIcon, Plus, Users, Target, Clock, AlertCircle, CheckCircle, Circle, MoreHorizontal, Edit, Trash2, Eye } from 'lucide-react';
-import { format } from 'date-fns';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Plus, Users, Target, Clock, AlertCircle, CheckCircle, Circle, MoreHorizontal, Edit, Trash2, Eye } from 'lucide-react';
 import AIProjectTemplateGenerator from './AIProjectTemplateGenerator';
 import { aiProjectService } from '../services/aiProjectService';
 
@@ -22,9 +18,7 @@ interface ProjectManagerProps {
   projects: Project[];
   tasks: Task[];
   categories: Category[];
-  goals: Goal[];
   onProjectCreate: (project: Omit<Project, 'id' | 'createdAt' | 'updatedAt'>) => void;
-  onProjectUpdate: (project: Project) => void;
   onProjectDelete: (projectId: string) => void;
   onTaskCreate: (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => void;
   onTaskUpdate: (task: Task) => void;
@@ -36,9 +30,7 @@ const ProjectManager: React.FC<ProjectManagerProps> = ({
   projects,
   tasks,
   categories,
-  goals,
   onProjectCreate,
-  onProjectUpdate,
   onProjectDelete,
   onTaskCreate,
   onTaskUpdate,

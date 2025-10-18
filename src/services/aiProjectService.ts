@@ -108,7 +108,7 @@ class AIProjectService {
     goals: Goal[]
   ): Promise<AIProjectSuggestion[]> {
     if (this.USE_MOCK_AI) {
-      return this.getMockProjectSuggestions(projects, tasks, goals);
+      return this.getMockProjectSuggestions(projects, tasks);
     }
 
     try {
@@ -164,11 +164,11 @@ class AIProjectService {
         const suggestions = JSON.parse(aiResponse);
         return Array.isArray(suggestions) ? suggestions : [suggestions];
       } catch {
-        return this.getMockProjectSuggestions(projects, tasks, goals);
+        return this.getMockProjectSuggestions(projects, tasks);
       }
     } catch (error) {
       console.error('AI Suggestions Error:', error);
-      return this.getMockProjectSuggestions(projects, tasks, goals);
+      return this.getMockProjectSuggestions(projects, tasks);
     }
   }
 
