@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Progress } from '@/components/ui/progress'
+import { Button } from '../components/ui/button'
+import { Card, CardContent, CardHeader } from '../components/ui/card'
+import { Badge } from '../components/ui/badge'
+import { Progress } from '../components/ui/progress'
 
 interface TimerState {
   minutes: number;
@@ -23,7 +23,7 @@ const PomodoroTimer: React.FC = () => {
     sessionCount: 0
   });
   
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Timer constants
@@ -144,7 +144,7 @@ const PomodoroTimer: React.FC = () => {
             variant="ghost"
             className="text-white/80 hover:text-white hover:bg-white/10"
           >
-            ‚Üê Back to Notes
+            ‚Ü?Back to Notes
           </Button>
           <Button
             onClick={() => window.close()}
@@ -195,7 +195,7 @@ const PomodoroTimer: React.FC = () => {
                   className="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-full font-medium backdrop-blur-sm border border-white/20"
                   size="lg"
                 >
-                  ‚ñ∂ Start
+                  ‚ñ?Start
                 </Button>
               ) : (
                 <Button
@@ -203,7 +203,7 @@ const PomodoroTimer: React.FC = () => {
                   className="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-full font-medium backdrop-blur-sm border border-white/20"
                   size="lg"
                 >
-                  ‚è∏ Pause
+                  ‚è?Pause
                 </Button>
               )}
               
@@ -238,7 +238,7 @@ const PomodoroTimer: React.FC = () => {
       {/* Footer */}
       <Card className="rounded-none border-x-0 border-b-0 bg-transparent border-white/20">
         <CardContent className="text-center text-white/60 text-sm py-6">
-          <p>25 min work ‚Ä¢ 5 min break ‚Ä¢ 15 min long break every 4 sessions</p>
+          <p>25 min work ‚Ä?5 min break ‚Ä?15 min long break every 4 sessions</p>
         </CardContent>
       </Card>
     </div>

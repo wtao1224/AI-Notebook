@@ -438,7 +438,7 @@ const GoalManager: React.FC<GoalManagerProps> = ({
                         <span className={`text-xs ${
                           overdue ? 'text-red-600 font-medium' : 'text-gray-500'
                         }`}>
-                          {overdue ? 'Overdue: ' : 'Due: '}{formatDate(goal.deadline)}
+                          {overdue ? 'Overdue: ' : 'Due: '}{formatDate(goal.deadline.toString())}
                         </span>
                       )}
                     </div>

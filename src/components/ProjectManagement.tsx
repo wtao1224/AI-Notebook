@@ -7,9 +7,9 @@ import GoalManager from './GoalManager';
 import TimeTracker from './TimeTracker';
 import AIProjectInsights from './AIProjectInsights';
 import AIProjectTemplateGenerator from './AIProjectTemplateGenerator';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
+
 
 type TabType = 'dashboard' | 'kanban' | 'projects' | 'goals' | 'time';
 
@@ -116,8 +116,8 @@ const ProjectManagement: React.FC = () => {
     const newTask: Task = {
       ...task,
       id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
     setTasks(prev => [...prev, newTask]);
   };
@@ -125,7 +125,7 @@ const ProjectManagement: React.FC = () => {
   const handleUpdateTask = (task: Task) => {
     setTasks(prev => prev.map(existingTask => 
       existingTask.id === task.id 
-        ? { ...task, updatedAt: new Date().toISOString() }
+        ? { ...task, updatedAt: new Date() }
         : existingTask
     ));
   };
@@ -139,8 +139,8 @@ const ProjectManagement: React.FC = () => {
     const newProject: Project = {
       ...project,
       id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
     setProjects(prev => [...prev, newProject]);
   };
@@ -148,7 +148,7 @@ const ProjectManagement: React.FC = () => {
   const handleUpdateProject = (id: string, updates: Partial<Project>) => {
     setProjects(prev => prev.map(project => 
       project.id === id 
-        ? { ...project, ...updates, updatedAt: new Date().toISOString() }
+        ? { ...project, ...updates, updatedAt: new Date() }
         : project
     ));
   };
@@ -164,8 +164,8 @@ const ProjectManagement: React.FC = () => {
     const newGoal: Goal = {
       ...goal,
       id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
     setGoals(prev => [...prev, newGoal]);
   };
