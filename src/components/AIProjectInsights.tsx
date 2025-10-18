@@ -47,7 +47,7 @@ const AIProjectInsights: React.FC<AIProjectInsightsProps> = ({
       const [newSuggestions, newAnalytics, newPrioritizedTasks] = await Promise.all([
         aiProjectService.generateProjectSuggestions(projects, tasks, goals),
         aiProjectService.analyzeProjects(projects, tasks),
-        aiProjectService.prioritizeTasks(tasks, projects)
+        aiProjectService.prioritizeTasks(tasks)
       ]);
       
       setSuggestions(newSuggestions);
@@ -224,7 +224,7 @@ const AIProjectInsights: React.FC<AIProjectInsightsProps> = ({
                           </Badge>
                           {suggestion.actionable && (
                             <Badge variant="outline" className="text-green-700 border-green-300">
-                              ✓ Actionable
+                              �?Actionable
                             </Badge>
                           )}
                         </div>
@@ -315,7 +315,7 @@ const AIProjectInsights: React.FC<AIProjectInsightsProps> = ({
                           <ul className="text-sm text-muted-foreground space-y-1">
                             {analytic.recommendations.map((rec, i) => (
                               <li key={i} className="flex items-start gap-2">
-                                <span className="text-blue-500 mt-0.5">•</span>
+                                <span className="text-blue-500 mt-0.5"></span>
                                 {rec}
                               </li>
                             ))}

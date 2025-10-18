@@ -382,7 +382,7 @@ const GoalManager: React.FC<GoalManagerProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {activeGoals.map(goal => {
                 const { current, progress } = calculateProgress(goal);
-                const overdue = isOverdue(goal.deadline);
+                const overdue = isOverdue(goal.deadline?.toString() || '');
                 
                 return (
                   <div key={goal.id} className="bg-white rounded-lg p-6 shadow-sm border hover:shadow-md transition-shadow">
