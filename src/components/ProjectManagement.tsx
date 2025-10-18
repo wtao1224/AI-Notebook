@@ -202,17 +202,18 @@ const ProjectManagement: React.FC = () => {
   };
 
   // Time tracking functions
-  const handleCreateTimeEntry = (entry: Omit<TimeEntry, 'id'>) => {
+  const handleCreateTimeEntry = (entry: Omit<TimeEntry, 'id' | 'createdAt'>) => {
     const newEntry: TimeEntry = {
       ...entry,
-      id: Date.now().toString()
+      id: Date.now().toString(),
+      createdAt: new Date()
     };
     setTimeEntries(prev => [...prev, newEntry]);
   };
 
-  const handleUpdateTimeEntry = (id: string, updates: Partial<TimeEntry>) => {
-    setTimeEntries(prev => prev.map(entry => 
-      entry.id === id ? { ...entry, ...updates } : entry
+  const handleUpdateTimeEntry = (entry: TimeEntry) => {
+    setTimeEntries(prev => prev.map(existingEntry => 
+      existingEntry.id === entry.id ? entry : existingEntry
     ));
   };
 
